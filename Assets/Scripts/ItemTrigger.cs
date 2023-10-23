@@ -21,14 +21,15 @@ public class ItemTrigger : MonoBehaviour
         {
             if (tag.type == OverlapTag.Type.Speed_Up)
             {
-                player.speed *= 2.0f;
+                transform.position *= 2.0f;
             }
 
             else if (tag.type == OverlapTag.Type.Speed_Down)
             {
-                player.speed /= 2.0f;
+                transform.position /= 2.0f;
             }
         }
+        
     }
 
     // Runs once on-exit
