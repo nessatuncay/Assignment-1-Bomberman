@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ItemTrigger : MonoBehaviour
 {
     float initialSpeed;
     Player player;
+    public int score = 0;
+    public int lives = 3;
 
     private void Start()
     {
@@ -21,12 +25,21 @@ public class ItemTrigger : MonoBehaviour
         {
             if (tag.type == OverlapTag.Type.Speed_Up)
             {
-                transform.position *= 2.0f;
+                player.speed *= 3.0f;
+                score += 1;
+                Debug.Log("Score =" + score);
             }
 
             else if (tag.type == OverlapTag.Type.Speed_Down)
             {
-                transform.position /= 2.0f;
+                player.speed /= 3.0f;
+                score -= 1;
+                lives -= 1;
+                Debug.Log("Score = " + score);
+                if (lives <= 0)
+                {
+                    SceneManager.LoadScene(1);
+                }
             }
         }
         
